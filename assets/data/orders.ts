@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import products from './products';
-import { Order } from '@Types';
+import { Order } from '@/Types'; 
 
 const now = dayjs();
 
