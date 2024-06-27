@@ -4,11 +4,25 @@ import { useState } from 'react'
 import Button from '@/components/Button'
 import Colors from '@/src/constants/Colors'
 import { Link, Stack } from 'expo-router'
+import { supabase } from '@/src/lib/supabase' 
 
 const SignUpScreen = () => {
     
     const [email,setEmail] = useState(``);
     const [password,setPassword] = useState(``);
+
+
+async function signInWithPassword() {
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    console.error('Error signing in:', error.message);
+  } 
+}
+
 
   return (
     <View style={styles.container}>
@@ -29,8 +43,8 @@ const SignUpScreen = () => {
         secureTextEntry
         />
 
-        <Button text='Create an Account' />
-        <Link href="/sign-in">
+        <Button onPress={signInWithPassword} text='Create an Account' />
+        <Link href="/sign-up">
         Create an Account
         </Link>
 
