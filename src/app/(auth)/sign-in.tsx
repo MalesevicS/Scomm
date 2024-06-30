@@ -10,11 +10,12 @@ const SignInScreen = () => {
     
     const [email,setEmail] = useState(``);
     const [password,setPassword] = useState(``);
-    console.log(email,password)
+    const [loading,setLoading] = useState(false);
 
     async function signInUser() {
+      setLoading(true)
       try {
-        const { error } = await supabase.auth.signUp({
+        const { error } = await supabase.auth.signInWithPassword({
           email: email,
           password: password,
         });
@@ -27,6 +28,9 @@ const SignInScreen = () => {
       } catch (error) {
         Alert.alert('Error', 'Failed to sign in. Please try again later.');
       }
+      setEmail("")
+      setPassword("")
+      setLoading(false)
     }
 
   return (
@@ -48,8 +52,8 @@ const SignInScreen = () => {
         secureTextEntry
         />
 
-        <Button onPress={signInUser} style={styles.btn} text='Sign in' />
-        <Link href="/sign-in">
+        <Button disabled={loading} onPress={signInUser} style={styles.btn} text={loading? "Signing in" : "Sign in"} />
+        <Link href="/sign-up">
         Create an Account
         </Link>
 

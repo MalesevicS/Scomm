@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { Alert, StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
 import { useState } from 'react'
 import Button from '@/components/Button'
@@ -10,18 +10,26 @@ const SignUpScreen = () => {
     
     const [email,setEmail] = useState(``);
     const [password,setPassword] = useState(``);
+    const [loading,setLoading] = useState(false);
 
-
-async function signInWithPassword() {
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-
-  if (error) {
-    console.error('Error signing in:', error.message);
-  } 
-}
+    async function signUpUser() {
+      setLoading(true)
+      try {
+        const { error } = await supabase.auth.signUp({
+          email: email,
+          password: password,
+        });
+    
+        if (error) {
+          Alert.alert(error.message);
+        } else {
+          Alert.alert('Success', 'User signed in successfully!');
+        }
+      } catch (error) {
+        Alert.alert('Error', 'Failed to sign in. Please try again later.');
+      }
+      setLoading(false)
+    }
 
 
   return (
@@ -43,9 +51,9 @@ async function signInWithPassword() {
         secureTextEntry
         />
 
-        <Button onPress={signInWithPassword} text='Create an Account' />
-        <Link href="/sign-up">
-        Create an Account
+        <Button onPress={signUpUser} text={loading? "Creating account" : "Create Account"} />
+        <Link href="/sign-in">
+        Already got an Account?
         </Link>
 
     </View>
