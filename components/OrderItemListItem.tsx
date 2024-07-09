@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { OrderItem } from '@Types'
+import { OrderItem } from '@/Types' 
 import { defaultShoeImage } from './ProductListItem'
 
 

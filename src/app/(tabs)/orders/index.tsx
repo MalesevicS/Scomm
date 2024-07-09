@@ -1,9 +1,12 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import orders from '@/assets/data/orders'
 import OrderListItem from '@/components/OrderListItem'
+import { supabase } from '@/src/lib/supabase'
 
 const Orderscreen = () => {
+
+
   return (
     <FlatList
       data={orders}
