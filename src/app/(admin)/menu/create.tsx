@@ -4,7 +4,8 @@ import Button from '@/components/Button';
 import { defaultShoeImage } from '@/components/ProductListItem';
 import Colors from '@/src/constants/Colors';
 import * as ImagePicker from 'expo-image-picker';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
+import { useInsertProduct } from '@/src/api/products';
 
 const CreateProductScreen = () => {
   const [name, setName] = useState('');
@@ -14,6 +15,9 @@ const CreateProductScreen = () => {
   
   const {id} = useLocalSearchParams();
   const isUpdating = !!id;
+
+  const { mutate: insertProduct} = useInsertProduct();
+  const router = useRouter();
 
   const validateInput = () => {
     setErrors(``)
@@ -46,9 +50,12 @@ const CreateProductScreen = () => {
         return;
     }
 
-    console.log("Creating Product", name, price); 
-
-    resetFields();
+    insertProduct({name, price: parseFloat(price), image}, {
+      onSuccess: () => {
+        resetFields();
+        router.back();
+      }
+    })
   }
 
   const resetFields = () => {
