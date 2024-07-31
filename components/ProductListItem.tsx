@@ -4,14 +4,14 @@ import { Text,View } from './Themed';
 import { Pressable } from 'react-native';
 import { Image } from 'react-native';
 import Colors from '@/src/constants/Colors';
-import { Product } from '@/Types'; 
+import { Tables } from '@/Types'; 
 import { Link, useSegments } from 'expo-router';
 
 
 export const defaultShoeImage = `https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png`
 
 type ProductListItemProps = {
-    product:Product
+    product: Tables<`products`>
 }
 
 

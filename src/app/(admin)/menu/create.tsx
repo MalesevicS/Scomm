@@ -19,7 +19,7 @@ const CreateProductScreen = () => {
 
   const { mutate: insertProduct} = useInsertProduct();
   const { mutate: updateProduct} = useUpdateProduct();
-  const { mutate: deleteProduct} = useDeleteProduct(  )
+  const { mutate: deleteProduct} = useDeleteProduct();
   const {data: updatingProduct} = useProduct(id)
   const router = useRouter();
 
