@@ -1,10 +1,22 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { StyleSheet, Text, View, FlatList, ActivityIndicator } from 'react-native'
 import React, { useEffect } from 'react'
-import orders from '@/assets/data/orders'
 import OrderListItem from '@/components/OrderListItem'
 import { supabase } from '@/src/lib/supabase'
+import { useAdminOrderList, useMyOrderList } from '@/src/api/orders'
 
 const Orderscreen = () => {
+
+  const {data: orders, isLoading, error} = useMyOrderList();
+
+  if (isLoading) {
+    return <ActivityIndicator />
+  }
+
+  if (error) {
+    return <Text>Failed to fetch products</Text>
+  }
+
+  console.log(orders)
 
 
   return (

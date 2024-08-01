@@ -21,6 +21,8 @@ const Index = () => {
      return <Redirect href={`/(tabs)`} />;
   }
 
+  console.log(isAdmin)
+
   return (
     <View style={{ flex: 1, justifyContent: "center", padding: 10 }}>
       <Link href={`/(tabs)`} asChild>

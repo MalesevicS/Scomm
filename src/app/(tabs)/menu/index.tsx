@@ -1,4 +1,4 @@
-import { ActivityIndicator, StyleSheet } from 'react-native';
+import { ActivityIndicator, Button, StyleSheet } from 'react-native';
 import { FlatList, ScrollView } from 'react-native';
 import { Text, View } from '@/components/Themed'; 
 import ProductListItem from '@/components/ProductListItem';
@@ -21,8 +21,11 @@ export default function TabOneScreen() {
     return <Text>Failed to fetch products</Text>
   }
 
+  
+
   return (
    <ScrollView>
+     <Button onPress={() => supabase.auth.signOut()} title="out"  />
     <FlatList 
       data={products}
       renderItem={({item}) => <ProductListItem product={item} />}
