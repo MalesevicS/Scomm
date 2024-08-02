@@ -16,7 +16,7 @@ const Orderscreen = () => {
     return <Text>Failed to fetch products</Text>
   }
 
-  console.log(orders)
+  
 
 
   return (

@@ -21,7 +21,6 @@ export default function TabOneScreen() {
     return <Text>Failed to fetch products</Text>
   }
 
-  
 
   return (
    <ScrollView>
