@@ -6,7 +6,7 @@ import Button from '@/components/Button'
 
 const cart = () => {
   
-  const {items, total} = useCart()
+  const {items, total, checkout} = useCart()
 
   return (
     <View style={styles.container}>
@@ -16,7 +16,7 @@ const cart = () => {
       contentContainerStyle={{padding:10,gap:10}}
        />
        <Text style={styles.totalPrice}>${total}</Text>
-       <Button text='Go to checkout' />
+       <Button onPress={checkout} text='Go to checkout' />
 
       <StatusBar />
     </View>

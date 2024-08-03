@@ -1,12 +1,12 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { OrderItem } from '@/Types' 
+import { OrderItem, Tables } from '@/Types' 
 import { defaultShoeImage } from './ProductListItem'
 
 
 
 type OrderListItemPromps = {
-    item:OrderItem 
+    item: {products:Tables<`products`>} & Tables<`order_items`> 
 }
 
 const OrderItemListItem = ({item} : OrderListItemPromps ) => {
